@@ -8,18 +8,20 @@ import { useEffect } from "react";
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const { entry, updateHandle, updateFullName, updateId } = useEntryStore();
+  const { entry, updateHandle, updateFullName, updateId, updateIsLoading } = useEntryStore();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues: { handle: entry?.handle, fullName: entry?.fullName } });
   const onSubmit = async (data: { [x: string]: any }) => {
+    updateIsLoading(true);
     updateHandle(data.handle);
     updateFullName(data.fullName);
     const response =  await  apiFetch('entry', { handle: data.handle, fullName: data.fullName, eventId: eventId });
     const {id} = await response.json();
     updateId(id);
+    updateIsLoading(false); 
     router.push("/editor");
   };
 

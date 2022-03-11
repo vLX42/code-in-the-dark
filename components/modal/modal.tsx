@@ -19,7 +19,7 @@ export const Modal = ({
           >
             X
           </button>
-          <div className={styles.body}>{children}</div>
+          <div onClick={(e) =>  e.stopPropagation()} className={styles.body}>{children}</div>
         </div>
       </div>
     )}

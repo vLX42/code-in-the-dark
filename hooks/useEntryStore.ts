@@ -11,12 +11,14 @@ interface Entry {
 
 interface EntrytStore {
   isSubmitted: boolean;
+  isLoading: boolean;
   entry: Entry | null;
   updateId: (id: number) => void;
   updateFullName: (fullName: string) => void;
   updateHandle: (handle: string) => void;
   updateHtml: (html: string) => void;
-  updateSubmitted: (submitted: boolean) => void;
+  updateIsSubmitted: (submitted: boolean) => void;
+  updateIsLoading: (isLoading: boolean) => void;
   clear: () => void;
 }
 
@@ -24,10 +26,11 @@ export const useEntryStore = createStore<EntrytStore>(
   persist(
     {
       key: "entry",
-      denylist: [],
+      denylist: ["isLoading"],
     },
     (set) => ({
       isSubmitted: false,
+      isLoading: false,
       entry: null,
       updateId: (id) => {
         set((state) => ({
@@ -61,7 +64,12 @@ export const useEntryStore = createStore<EntrytStore>(
           },
         }));
       },
-      updateSubmitted: (value: boolean) => {
+      updateIsLoading: (value: boolean) => {
+        set((state) => ({
+          isLoading: value
+        }));
+      },
+      updateIsSubmitted: (value: boolean) => {
         set((state) => ({
           isSubmitted: value
         }));

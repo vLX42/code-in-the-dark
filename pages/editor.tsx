@@ -22,7 +22,7 @@ const STREAK_TIMEOUT = 10 * 1000;
 const POWER_MODE_ACTIVATION_THRESHOLD = 200;
 
 const EditorView: NextPage = () => {
-  const { entry, updateHtml, isSubmitted, updateSubmitted } = useEntryStore();
+  const { entry, updateHtml, isSubmitted, updateIsSubmitted , updateIsLoading} = useEntryStore();
   const [streak, setStreak] = useState(0);
   const [powerMode, setPowerMode] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
@@ -63,14 +63,16 @@ const EditorView: NextPage = () => {
     };
   }, []);
 
-  const finishHandler = useCallback(() => {
-    apiFetch("save", {
+  const finishHandler = useCallback(async () => {
+    updateIsLoading(true);
+    await apiFetch("save", {
       entryId: entry?.id,
       html: entry?.html,
       streak: streak,
       powerMode: powerMode,
     });
-    updateSubmitted(true);
+    updateIsSubmitted(true);
+    updateIsLoading(false);
     router.push("/thanks");
   }, [entry, streak, powerMode]);
 

@@ -5,7 +5,7 @@ import { useEntryStore } from "../hooks/useEntryStore";
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const { entry, updateSubmitted } = useEntryStore();
+  const { entry, updateIsSubmitted } = useEntryStore();
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       <iframe ref={iframeRef} />
       <div
         onClick={() => {
-          updateSubmitted(false);
+          updateIsSubmitted(false);
           router.push("/editor");
         }}
       >
