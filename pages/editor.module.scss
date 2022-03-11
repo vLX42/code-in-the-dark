@@ -100,10 +100,10 @@ $spacing: 20px;
       :global(.ace_cursor) {
         &:after {
           position: absolute;
-          height: 150px;
-          width: 132px;
-          left: -60px;
-          bottom: -30px;
+          height: 135px;
+          width: 105px;
+          left: -48px;
+          bottom: -24px;
           background-image: url(/fire3.gif);
           display: block;
           background-repeat: no-repeat;

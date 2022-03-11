@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-html";
-import "ace-builds/src-noconflict/theme-gob";
+import "ace-builds/src-noconflict/theme-vibrant_ink";
 
 export interface EditorProps {
   onChange?: (newValue: string) => void;
@@ -26,7 +26,7 @@ export const Editor = ({
     <AceEditor
       className={className}
       mode="html"
-      theme="gob"
+      theme="vibrant_ink"
       onChange={update}
       height="100vh"
       width="100%"
