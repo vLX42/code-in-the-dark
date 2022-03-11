@@ -12,7 +12,7 @@ export const instructions = `
 Good luck and most important of all; have fun!
 
 --- Assets ---
-./shopify-logo.svg (121x35)
-./market-image.jpg (678x543)
-./start-image.png (647x506)
+/shopify-logo.svg (121x35)
+/market-image.jpg (678x543)
+/start-image.png (647x506)
 `;
