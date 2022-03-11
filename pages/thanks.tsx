@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <center>
+    <div style={{ textAlign: 'center'}}>
       <h1>Thanks!</h1>
       <h3>Your entry has been submitted</h3>
       <iframe ref={iframeRef} />
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
       >
         Secret back button
       </div>
-    </center>
+    </div>
   );
 };
 

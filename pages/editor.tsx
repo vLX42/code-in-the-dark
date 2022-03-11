@@ -41,7 +41,6 @@ const EditorView: NextPage = () => {
 
   useEffect(() => {
     function saveTimelab() {
-      console.log("html", entry?.html);
       apiFetch("timelap", {
         entryId: entry?.id,
         html: entry?.html,

@@ -15,12 +15,10 @@ const Home: NextPage = () => {
     formState: { errors },
   } = useForm({ defaultValues: { handle: entry?.handle, fullName: entry?.fullName } });
   const onSubmit = async (data: { [x: string]: any }) => {
-    console.log(data)
     updateHandle(data.handle);
     updateFullName(data.fullName);
     const response =  await  apiFetch('entry', { handle: data.handle, fullName: data.fullName, eventId: eventId });
     const {id} = await response.json();
-    console.log(id);
     updateId(id);
     router.push("/editor");
   };
