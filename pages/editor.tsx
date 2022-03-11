@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import React, { useEffect, useState, useCallback } from "react";
-
+import {EditorProps} from "./editor";
 import { Button } from "../components/button/index";
 import { useDebouncedCallback } from "use-debounce";
 import { useEntryStore } from "../hooks/useEntryStore";
@@ -13,9 +13,9 @@ import styles from "./editor.module.scss";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
-const Editor = dynamic(() =>
-  import("../components/editor").then((mod) => mod.Editor) as  any,
-  { ssr: false }
+const Editor = dynamic<EditorProps>(() =>
+  import("../components/editor").then((mod) => mod.Editor) as any,
+  { ssr: false, loading: () =><div>Loading...</div> }
 );
 const STREAK_TIMEOUT = 10 * 1000;
 

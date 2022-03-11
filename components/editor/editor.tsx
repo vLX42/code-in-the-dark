@@ -3,8 +3,8 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/theme-gob";
 
-interface EditorProps {
-  onChange?: (value: string) => void;
+export interface EditorProps {
+  onChange?: (newValue: string) => void;
   defaultValue?: string | null;
   className: string;
 }
