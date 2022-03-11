@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overscroll-behavior: none;
+  background-color: black;
+  color: white;
+  font-family: "Press Start 2P", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+.button {
+  padding: 10px 15px;
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  background-color: #3a9364;
+  border: none;
+  box-shadow: none;
+  appearance: none;
+
+  &:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+input {
+  padding: 10px 15px;
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 12px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: normal;
+  height: 100vh;
+  h1, h2, h3 {
+    text-align: center;
+  }
+  >* {
+    max-width: 400px;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    margin-bottom: 10px;
+  }
+}

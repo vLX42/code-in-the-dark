@@ -1,0 +1,58 @@
+.powerMode {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  color: #0df;
+  margin: 0;
+}
+
+.streak {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  text-align: right;
+  overflow: visible;
+
+  h1 {
+    font-size: 20px;
+    color: white;
+    margin: 15px;
+  }
+  h2 {
+    font-size: 80px;
+    color: #4effa1;
+    padding: 0;
+    margin: 0;
+    inline-size: fit-content;
+  }
+
+  ul {
+    font-size: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    display: flex;
+    color: #4effa1;
+    flex-direction: column-reverse;
+    li {
+
+      margin: 0;
+    }
+  }
+  .timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+  .timerInner {
+    background-color: #4effa1;
+    opacity: 0.5;
+    height: 10px;
+  }
+}

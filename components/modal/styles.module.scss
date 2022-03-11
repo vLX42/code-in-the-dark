@@ -1,0 +1,43 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 198;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal {
+    position: relative;
+    z-index: 199;
+    width: 80vw;
+    height: 80vh;
+    margin: 0 auto;
+  }
+  
+  .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+    border: 0;
+    font-weight: bolder;
+    -webkit-appearance: none;
+    background: none;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .body {
+    padding: 1.25rem 1.5rem;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+    height: 100%;
+  }
