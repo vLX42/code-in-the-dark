@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import React, { useEffect, useState, useCallback } from "react";
-import { Editor } from "../components/editor";
+
 import { Button } from "../components/button/index";
 import { useDebouncedCallback } from "use-debounce";
 import { useEntryStore } from "../hooks/useEntryStore";
@@ -10,15 +10,19 @@ import { Modal } from "../components/modal";
 import { eventId, reference_image, instructions } from "../config/event";
 import { apiFetch } from "../lib/apiFetch";
 import styles from "./editor.module.scss";
-import { Router, useRouter } from "next/router";
-import { route } from "next/dist/server/router";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 
+const Editor = dynamic(() =>
+  import("../components/editor").then((mod) => mod.Editor) as  any,
+  { ssr: false }
+);
 const STREAK_TIMEOUT = 10 * 1000;
 
 const POWER_MODE_ACTIVATION_THRESHOLD = 200;
 
 const EditorView: NextPage = () => {
-  const { entry, updateHtml,isSubmitted, updateSubmitted } = useEntryStore();
+  const { entry, updateHtml, isSubmitted, updateSubmitted } = useEntryStore();
   const [streak, setStreak] = useState(0);
   const [powerMode, setPowerMode] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
@@ -30,14 +34,17 @@ const EditorView: NextPage = () => {
     setPowerMode(false);
   }, STREAK_TIMEOUT);
 
-  const onChange = useCallback((newValue: string) => {
-    setStreak(streak + 1);
-    if (streak === POWER_MODE_ACTIVATION_THRESHOLD) {
-      setPowerMode(true);
-    }
-    debouncedSearchTermChanged();
-    updateHtml(newValue);
-  }, [streak, debouncedSearchTermChanged, updateHtml]);
+  const onChange = useCallback(
+    (newValue: string) => {
+      setStreak(streak + 1);
+      if (streak === POWER_MODE_ACTIVATION_THRESHOLD) {
+        setPowerMode(true);
+      }
+      debouncedSearchTermChanged();
+      updateHtml(newValue);
+    },
+    [streak, debouncedSearchTermChanged, updateHtml]
+  );
 
   useEffect(() => {
     function saveTimelab() {
@@ -57,7 +64,6 @@ const EditorView: NextPage = () => {
   }, []);
 
   const finishHandler = useCallback(() => {
-
     apiFetch("save", {
       entryId: entry?.id,
       html: entry?.html,
@@ -66,7 +72,7 @@ const EditorView: NextPage = () => {
     });
     updateSubmitted(true);
     router.push("/thanks");
-   }, [entry, streak, powerMode]);
+  }, [entry, streak, powerMode]);
 
   return (
     <div
