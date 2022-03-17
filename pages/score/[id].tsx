@@ -5,7 +5,7 @@ import prisma from "../../lib/prisma";
 import { Entry, Timelap } from ".prisma/client";
 
 export type PageProps = {
-  entry: (Entry & { timelaps: Timelap[] }) | null;
+  entry: Entry | null;
 };
 
 export default function PageComponent(
@@ -26,7 +26,10 @@ export default function PageComponent(
       const doc = iframeRef?.current?.contentDocument;
       doc?.open();
       doc?.write(
-        (timeLeft == 1 ? entry?.html : entry?.timelaps[timeLeft]?.html) || ""
+        (timeLeft == 1
+          ? entry?.html
+          : (entry as Entry & { timelaps: Timelap[] })?.timelaps[timeLeft]
+              ?.html) || ""
       );
       doc?.close();
       setTimeLeft(timeLeft - 1);
