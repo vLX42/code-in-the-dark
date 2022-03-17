@@ -3,7 +3,7 @@ import { configurePersist } from 'zustand-persist'
 const dummyStorageApi = {
   getItem: () => null,
   setItem: () => undefined,
-  removeItem: () => undefined,  
+  removeItem: () => undefined,
 }
 
 const { persist, purge } = configurePersist({

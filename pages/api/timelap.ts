@@ -25,7 +25,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     },
     data: {
       powerMode,
-      score: streak,
+      score: streak || 0,
     },
   });
 

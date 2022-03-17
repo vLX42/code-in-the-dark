@@ -9,7 +9,7 @@ import { Streak } from "../components/streak/streak";
 import { Modal } from "../components/modal";
 import { eventId, reference_image, instructions } from "../config/event";
 import { apiFetch } from "../lib/apiFetch";
-import styles from "./editor.module.scss";
+import styles from "../styles/editor.module.scss";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 

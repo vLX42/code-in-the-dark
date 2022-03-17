@@ -1,0 +1,25 @@
+.entry {
+    font-size: 20px;
+    border-bottom: white 1px solid;
+    padding: 10px;
+    width: auto;
+    display: flex;
+    color: #3a9364;
+    >div {
+        flex: 1;
+    }
+}
+
+.powerMode {
+    animation: leaves 0.5s ease-in-out infinite alternate;
+    color: #0df;
+}
+
+@keyframes leaves {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.06);
+    }
+  }
