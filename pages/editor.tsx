@@ -46,7 +46,7 @@ const EditorView: NextPage = () => {
     [streak, debouncedSearchTermChanged, updateHtml]
   );
 
-  const saveTimelab = useCallback(async () => {
+  const saveTimelabApi = useCallback(async () => {
     apiFetch("timelap", {
       entryId: entry?.id,
       html: entry?.html,
@@ -58,7 +58,7 @@ const EditorView: NextPage = () => {
 
   useEffect(() => {
     function saveTimelab() {
-      saveTimelab();
+      saveTimelabApi();
     }
     if (isSubmitted) router.push("/thanks");
     const interval = setInterval(() => saveTimelab(), 15000);
