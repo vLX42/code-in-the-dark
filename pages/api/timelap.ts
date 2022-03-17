@@ -7,7 +7,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { entryId, html, streak, powerMode } = req.body;
 
   const missingParams = Object.entries({
-    entryId, html
+    entryId
   })
     .filter(([_, value]) => !value)
     .map(([key]) => `'${key}'`);
@@ -31,7 +31,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   await prisma.timelap.create({
     data: {
-      html,
+      html: html || "",
       entry: { connect: { id: entryId } },
 
     },
