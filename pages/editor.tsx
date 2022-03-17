@@ -61,7 +61,7 @@ const EditorView: NextPage = () => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [streak]);
 
   const finishHandler = useCallback(async () => {
     updateIsLoading(true);
