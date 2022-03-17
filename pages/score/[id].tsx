@@ -14,7 +14,9 @@ export default function PageComponent(
   const { entry } = data;
   const router = useRouter();
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [timeLeft, setTimeLeft] = useState(entry?.timelaps.length);
+  const [timeLeft, setTimeLeft] = useState(
+    (entry as Entry & { timelaps: Timelap[] })?.timelaps.length
+  );
 
   useEffect(() => {
     // exit early when we reach 0
