@@ -46,22 +46,26 @@ const EditorView: NextPage = () => {
     [streak, debouncedSearchTermChanged, updateHtml]
   );
 
+  const saveTimelab = useCallback(async () => {
+    apiFetch("timelap", {
+      entryId: entry?.id,
+      html: entry?.html,
+      eventId: eventId,
+      streak: streak || 0,
+      powerMode: powerMode,
+    });
+  }, [entry?.html, entry?.id, powerMode, streak])
+
   useEffect(() => {
     function saveTimelab() {
-      apiFetch("timelap", {
-        entryId: entry?.id,
-        html: entry?.html,
-        eventId: eventId,
-        streak: streak || 0,
-        powerMode: powerMode,
-      });
+      saveTimelab();
     }
     if (isSubmitted) router.push("/thanks");
     const interval = setInterval(() => saveTimelab(), 15000);
     return () => {
       clearInterval(interval);
     };
-  }, [entry?.html, entry?.id, powerMode, streak]);
+  }, []);
 
   const finishHandler = useCallback(async () => {
     updateIsLoading(true);
