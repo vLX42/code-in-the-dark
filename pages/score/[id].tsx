@@ -1,16 +1,15 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { useRef, useEffect, useState } from "react";
 import prisma from "../../lib/prisma";
 import { Entry, Timelap } from ".prisma/client";
 
 export type PageProps = {
-  entry: Entry & { timelaps: Timelap[] } | null;
+  entry: (Entry & { timelaps: Timelap[] }) | null;
 };
 
-
 export default function PageComponent(
-  data: InferGetServerSidePropsType<typeof getServerSideProps>,
+  data: InferGetServerSidePropsType<typeof getServerSideProps>
 ): JSX.Element {
   const { entry } = data;
   const router = useRouter();
@@ -26,7 +25,9 @@ export default function PageComponent(
     const intervalId = setInterval(() => {
       const doc = iframeRef?.current?.contentDocument;
       doc?.open();
-      doc?.write((timeLeft==1 ? entry?.html : entry?.timelaps[timeLeft]?.html) || "");
+      doc?.write(
+        (timeLeft == 1 ? entry?.html : entry?.timelaps[timeLeft]?.html) || ""
+      );
       doc?.close();
       setTimeLeft(timeLeft - 1);
     }, 100);
@@ -38,17 +39,18 @@ export default function PageComponent(
   }, [timeLeft]);
 
   return (
-    <div style={{ textAlign: 'center'}}>
+    <div style={{ textAlign: "center" }}>
       <h1>{entry?.handle}</h1>
       <h3>{entry?.fullName}</h3>
       <h4>Score: {entry?.score}</h4>
       <iframe ref={iframeRef} />
-
     </div>
   );
-};
+}
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async ({
+  params,
+}) => {
   const entry = await prisma.entry.findUnique({
     where: {
       id: Number(params?.id) || -1,
@@ -61,8 +63,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({ params
   });
   return {
     props: {
-     entry,
+      entry,
     },
   };
 };
-
