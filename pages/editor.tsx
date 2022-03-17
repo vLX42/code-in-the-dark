@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { EditorProps } from "../components/editor";
 import { Button } from "../components/button/index";
 import { useDebouncedCallback } from "use-debounce";
@@ -21,8 +21,31 @@ const STREAK_TIMEOUT = 10 * 1000;
 
 const POWER_MODE_ACTIVATION_THRESHOLD = 200;
 
+function useInterval(callback: () => void, delay: number | null) {
+  const savedCallback = useRef(callback);
+
+  // Remember the latest callback if it changes.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    // Don't schedule if no delay is specified.
+    // Note: 0 is a valid value for delay.
+    if (!delay && delay !== 0) {
+      return;
+    }
+
+    const id = setInterval(() => savedCallback.current(), delay);
+
+    return () => clearInterval(id);
+  }, [delay]);
+}
+
 const EditorView: NextPage = () => {
-  const { entry, updateHtml, isSubmitted, updateIsSubmitted , updateIsLoading} = useEntryStore();
+  const { entry, updateHtml, isSubmitted, updateIsSubmitted, updateIsLoading } =
+    useEntryStore();
   const [streak, setStreak] = useState(0);
   const [powerMode, setPowerMode] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
@@ -46,7 +69,7 @@ const EditorView: NextPage = () => {
     [streak, debouncedSearchTermChanged, updateHtml]
   );
 
-  const saveTimelabApi = useCallback(async () => {
+  useInterval(async () => {
     apiFetch("timelap", {
       entryId: entry?.id,
       html: entry?.html,
@@ -54,17 +77,10 @@ const EditorView: NextPage = () => {
       streak: streak || 0,
       powerMode: powerMode,
     });
-  }, [entry?.html, entry?.id, powerMode, streak])
+  }, 15000);
 
   useEffect(() => {
-    function saveTimelab() {
-      saveTimelabApi();
-    }
     if (isSubmitted) router.push("/thanks");
-    const interval = setInterval(() => saveTimelab(), 15000);
-    return () => {
-      clearInterval(interval);
-    };
   }, []);
 
   const finishHandler = useCallback(async () => {
