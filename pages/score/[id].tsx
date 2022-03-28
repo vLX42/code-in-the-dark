@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useRef, useEffect, useState } from "react";
 import prisma from "../../lib/prisma";
 import { Entry, Timelap } from ".prisma/client";
+import { injectCode } from "../../config/event";
 
 export type PageProps = {
   entry: Entry | null;
@@ -28,10 +29,11 @@ export default function PageComponent(
       const doc = iframeRef?.current?.contentDocument;
       doc?.open();
       doc?.write(
-        (timeLeft == 1
-          ? entry?.html
-          : (entry as Entry & { timelaps: Timelap[] })?.timelaps[timeLeft]
-              ?.html) || ""
+        injectCode +
+          (timeLeft == 1
+            ? entry?.html
+            : (entry as Entry & { timelaps: Timelap[] })?.timelaps[timeLeft]
+                ?.html) || ""
       );
       doc?.close();
       setTimeLeft(timeLeft - 1);
@@ -62,7 +64,9 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
     },
     include: {
       timelaps: {
-        select: { html: true, id: true },
+        orderBy: { id: "asc" },
+        select: { id: true , html: true},
+
       },
     },
   });

@@ -12,7 +12,14 @@ export const instructions = `
 Good luck and most important of all; have fun!
 
 --- Assets ---
-/shopify-logo.svg (121x35)
-/market-image.jpg (678x543)
-/start-image.png (647x506)
+/DFDS-logo-positive.png (2747×949) - DFDS logo
+/unroro-map.jpg (483×300) - map
+/col1-image.jpg (232×152) - column 1 image
+/col2-image.jpg (232×152) - column 2 image
+/col3-image.jpg (232×152) - column 3 image
+Font: 'DFDS' is loaded
+Light blue color: #58b9fe;
 `;
+
+export const injectCode = `<link rel="stylesheet"  href="https://unpkg.com/@dfds-frontend/fonts@0.0.4/main/font.css"  />`
+export const showPreview = false;

@@ -2,6 +2,13 @@
 
 ## Getting Started
 
+Create a postgres, a free tier (hobby) at heroku is fine. Add the url to your .env file:
+```
+DATABASE_URL="postgres://xx:xxxxxxx@xxxxx/xxxxx"
+```
+
+To set up your event have a look at the file called  `config/event.tsx` in this file you set up the reference image and the instruction. You can put your images in the public folder.
+
 First, run the development server:
 
 ```bash
@@ -9,26 +16,25 @@ npm run dev
 # or
 yarn dev
 ```
+### Basic usage
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You will be greated with a form if you access the root of the site. Here the participants can put in there handle and name. They will now be send to the editor.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The editor will every 15 second send the progress to the backend with the current score.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+You can see the current score on this page `/score`, you can also click on each name and see an animation of the progress and the final submission.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Warning
 
-## Learn More
+There has been no consideration about security and a bright person could maybe easy find a way to cheat :)
 
-To learn more about Next.js, take a look at the following resources:
+### TODO (For someone else)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Backend to create new events
+Interface to upload assets
+Security, maybe github auth or simular
+Vote feature
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Credit
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+https://github.com/MHase/code-in-the-dark-uber-editor/tree/develop/ For some of the css and the idea to do a rewrite in React
