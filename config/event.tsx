@@ -7,7 +7,7 @@ export const instructions = `
 2) Stay in this editor at all times
 3) No measurement tools
 4) Stop coding when the time's up
-5) After the round is over, press "Finish" and follow the prompt instructions to see your results
+5) After the round is over, press "Finish"
 
 Good luck and most important of all; have fun!
 
