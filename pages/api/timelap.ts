@@ -3,7 +3,7 @@ import prisma from "../../lib/prisma";
 
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (process.env.demo_mode) {
+  if (process.env.DEMO_MODE) {
     return
   }
 
