@@ -64,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
     },
     include: {
       timelaps: {
-        orderBy: { id: "asc" },
+        orderBy: { id: "desc" },
         select: { id: true , html: true},
 
       },
