@@ -23,3 +23,4 @@ Light blue color: #58b9fe;
 
 export const injectCode = `<link rel="stylesheet"  href="https://unpkg.com/@dfds-frontend/fonts@0.0.4/main/font.css"  />`
 export const showPreview = false;
+export const demoMode = true;

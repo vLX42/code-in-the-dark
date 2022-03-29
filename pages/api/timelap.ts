@@ -1,8 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../lib/prisma";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (process.env.demo_mode) {
+    return
+  }
 
   const { entryId, html, streak, powerMode } = req.body;
 

@@ -3,7 +3,9 @@ import prisma from "../../lib/prisma";
 import { eventId } from "../../config/event";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-
+  if (process.env.demo_mode) {
+    return
+  }
   const { handle, fullName } = req.body;
 
   const missingParams = Object.entries({
