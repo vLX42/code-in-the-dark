@@ -1,6 +1,7 @@
 $spacing: 20px;
 
 .editorView {
+  height: calc(100vh - 10px);
   position: relative;
   font-family: "Press Start 2P", cursive;
 
