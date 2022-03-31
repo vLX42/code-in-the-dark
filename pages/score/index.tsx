@@ -38,6 +38,7 @@ const Score: NextPage = () => {
           <div>{entry.handle}</div>
           <div>{entry.fullName}</div>
           <div>{entry.score}</div>
+          <div>▶️</div>
         </div>
       ))}
     </div>
