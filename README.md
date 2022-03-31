@@ -29,7 +29,7 @@ npm run dev
 # or
 yarn dev
 # to edit or view the database
-npx prima studio
+npx prisma studio
 ```
 ### Basic usage
 
