@@ -50,7 +50,9 @@ Interface to upload assets
 Security, maybe github auth or similar
 Vote feature
 
-#### Credit
+### Credit
+
+https://github.com/codeinthedark/codeinthedark.github.io More about the Code In The Dark concept
 
 https://github.com/MHase/code-in-the-dark-uber-editor/tree/develop/ For some of the CSS and the idea to do a rewrite in React
-![image](https://user-images.githubusercontent.com/1506089/160981485-bf6562fc-2306-4931-ae4f-916ce0045ee1.png)
+
