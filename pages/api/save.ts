@@ -32,7 +32,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     },
   });
 
-
   prisma.$disconnect();
 
   res.send(200);

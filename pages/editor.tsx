@@ -11,6 +11,7 @@ import { eventId, reference_image, instructions } from "../config/event";
 import { apiFetch } from "../lib/apiFetch";
 import styles from "../styles/editor.module.scss";
 import { useRouter } from "next/router";
+import useInterval from '../hooks/useInterval'
 import dynamic from "next/dynamic";
 
 const Editor = dynamic<EditorProps>(
@@ -21,27 +22,7 @@ const STREAK_TIMEOUT = 10 * 1000;
 
 const POWER_MODE_ACTIVATION_THRESHOLD = 200;
 
-function useInterval(callback: () => void, delay: number | null) {
-  const savedCallback = useRef(callback);
 
-  // Remember the latest callback if it changes.
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    // Don't schedule if no delay is specified.
-    // Note: 0 is a valid value for delay.
-    if (!delay && delay !== 0) {
-      return;
-    }
-
-    const id = setInterval(() => savedCallback.current(), delay);
-
-    return () => clearInterval(id);
-  }, [delay]);
-}
 
 const EditorView: NextPage = () => {
   const { entry, updateHtml, isSubmitted, updateIsSubmitted, updateIsLoading } =
