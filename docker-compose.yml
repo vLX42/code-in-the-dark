@@ -1,0 +1,50 @@
+version: '3.8' #This denotes that we are using version 3 of Docker Compose
+services: #This section defines all the different containers we will create.
+  code_in_the_dark: #This is the name of our Nextjs application.
+    build: #This specifies the location of our Dockerfile
+      dockerfile: Dockerfile
+      context: .
+    ports: #This is used to map the container’s ports to the host machine.
+      - "3000:3000"
+    networks:
+      - codenet
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    restart: always
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4572:4572
+    environment:
+      - SERVICES=s3
+      - PERSISTENCE=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DATA_DIR=/tmp/localstack/data
+    networks:
+      - codenet
+    volumes:
+      - /tmp/localstack:/tmp/localstack,mode=600
+      - /var/run/docker.sock:/var/run/docker.sock
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    tty: true
+    restart: always
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_DB=codedb
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=username
+    networks:
+      - codenet
+    volumes:
+      - db_data:/var/lib/postgresql/data:rw
+
+networks:
+  codenet:
+volumes:
+  db_data:
+

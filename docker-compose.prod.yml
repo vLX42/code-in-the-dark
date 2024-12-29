@@ -1,0 +1,4 @@
+version: "3.8" #This denotes that we are using version 3 of Docker Compose
+services: #This section defines all the different containers we will create.
+    code_in_the_dark: #This is the name of our Nextjs application.
+        command: prod #command to execute

@@ -1,5 +1,5 @@
-import createStore from "zustand";
-import persist from "../lib/persist";
+import create from "zustand";
+import {  persist } from 'zustand/middleware'
 
 interface Entry {
   id?: number;
@@ -22,12 +22,9 @@ interface EntrytStore {
   clear: () => void;
 }
 
-export const useEntryStore = createStore<EntrytStore>(
+export const useEntryStore = create<EntrytStore>()(
+
   persist(
-    {
-      key: "entry",
-      denylist: ["isLoading"],
-    },
     (set) => ({
       isSubmitted: false,
       isLoading: false,

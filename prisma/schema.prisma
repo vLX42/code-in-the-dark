@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+
 }
 
 datasource db {
@@ -10,25 +11,69 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Status {
+  CLOSED
+  OPEN
+  ACTIVE
+  VOTING
+  ENDED
+  HIDDEN
+}
 
+model Event {
+  id           Int      @id @default(autoincrement())
+  name         String
+  status       Status
+  reference    String
+  instructions String
+  createdAt    DateTime @default(now()) @map(name: "created_at")
+  Entries      Entry[]
+}
 
+enum UserType {
+  ADMIN
+  JUDGE
+}
+
+model User {
+  id           Int             @id @default(autoincrement())
+  userType     UserType
+  username     String
+  passwordHash String
+  name         String
+  createdAt    DateTime        @default(now()) @map(name: "created_at")
+  votes        UserEntryVote[]
+}
+
+model UserEntryVote {
+  user    User  @relation(fields: [userId], references: [id])
+  userId  Int
+  entry   Entry @relation(fields: [entryId], references: [id])
+  entryId Int
+  vote    Int
+
+  @@id([userId, entryId])
+}
 
 model Timelap {
-  id        Int     @default(autoincrement()) @id
+  id        Int      @id @default(autoincrement())
   html      String
-  createdAt DateTime  @default(now()) @map(name: "created_at")
-  entry     Entry?    @relation(fields: [entryId], references: [id])
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  entry     Entry?   @relation(fields: [entryId], references: [id])
   entryId   Int?
 }
 
 model Entry {
-  id        Int     @default(autoincrement()) @id
+  id        Int             @id @default(autoincrement())
   eventId   Int
   handle    String
   fullName  String?
   score     Int?
-  powerMode Boolean @default(false)
+  powerMode Boolean         @default(false)
   html      String?
   timelaps  Timelap[]
+  votes     UserEntryVote[]
+  Event     Event           @relation(fields: [eventId], references: [id])
+
   @@map(name: "timelaps")
 }
