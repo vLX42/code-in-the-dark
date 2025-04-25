@@ -21,12 +21,12 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - uses: vLX42/ai-pr-reviewer@latest
+      - uses: vLX42/ai-pr-reviewer@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AZURE_OPENAI_API_KEY: ${{ Secrets.AZURE_OPENAI_API_KEY }}
-          AZURE_OPENAI_API_INSTANCE_NAME: ${{ Secrets.AZURE_OPENAI_API_INSTANCE_NAME }}
-          AZURE_OPENAI_API_DEPLOYMENT_NAME: ${{ Secrets.AZURE_OPENAI_API_DEPLOYMENT_NAME }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_API_INSTANCE_NAME: ${{ secrets.AZURE_OPENAI_API_INSTANCE_NAME }}
+          AZURE_OPENAI_API_DEPLOYMENT_NAME: ${{ secrets.AZURE_OPENAI_API_DEPLOYMENT_NAME }}
           AZURE_OPENAI_API_VERSION: '2023-07-01-preview'
         with:
           debug: true
