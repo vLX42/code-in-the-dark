@@ -1,19 +1,19 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-// Define the state structure for the EntryStore
+// Types and Interfaces
+interface Entry {
+  id?: number;
+  handle?: string;
+  fullName?: string;
+  html?: string;
+  submitted?: boolean;
+}
+
 interface EntryState {
   isSubmitted: boolean;
   isLoading: boolean;
-  entry: Entry | null;
-}
-
-// Define the actions available in the EntryStore
-interface EntryActions {
-  updateEntry: (updates: Partial<Entry>) => void;
-  updateIsSubmitted: (
-    nextValue:
-      | EntryState["isSubmitted"]
+  entry: Entry
       | ((current: EntryState["isSubmitted"]) => EntryState["isSubmitted"])
   ) => void;
   updateIsLoading: (
