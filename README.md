@@ -4,7 +4,6 @@ This is a rewrite of the Coffescript version, its coded in React/Next.js I have 
 
 You will need some sort of postgres database for this to work, I used the free hobby version from Heroku.  
 
- 
 
 ![image](https://user-images.githubusercontent.com/1506089/160987624-73d4d04c-f2fa-4057-90d1-e7b5746ed77a.png)
 
