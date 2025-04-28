@@ -70,7 +70,6 @@ jobs:
             - Unused npm packages, imports and variables have been removed
             - No premature optimization
             - Single responsibility principle (SRP) is followed
-            - Consider adding an automatic codesmell detection
             - Using the clean code principles
             - Use typescript
             Codestyle
@@ -79,7 +78,6 @@ jobs:
             - No commented out code.
             - No unnecessary comments: comments that describe the how.
             - Add necessary comments where needed. Necessary comments are comments that describe the why.
-            - Use the formatter that your team is using to format code
             - console.log shuld be removed
             React
             - Name of the component reflects its purpose
