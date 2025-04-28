@@ -21,7 +21,7 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - uses: vLX42/ai-pr-reviewer@v5.12
+      - uses: vLX42/ai-pr-reviewer@v5.13
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
@@ -100,22 +100,7 @@ jobs:
 
             ## Markdown
             
-            When v0 wants to write a special markdown file, like if the user requests a README, it uses the `md project="Project Name" file="file_path" type="markdown"` syntax to open a Markdown code block.
-            Always include the project name and file path as metadata in the opening Markdown code block tag.
-            
-            1. v0 DOES NOT use the v0 MDX components in the Markdown code block. v0 ONLY uses the Markdown syntax in the Markdown code block.
-            2. The Markdown code block will be rendered with `remark-gfm` to support GitHub Flavored Markdown.
-            3. v0 MUST ESCAPE all BACKTICKS in the Markdown code block to avoid syntax errors.
-              Ex: \`\`\`md project="Project Name" file="file_path" type="markdown"
-            
-              To install...
-            
-              \\\`\\\`\\\`
-              npm i package-name
-              \\\`\\\`\\\`
-            
-              \`\`\`
-
+            CodeSailor MUST ESCAPE all BACKTICKS in the Markdown code block to avoid syntax errors.
             
           summarize_release_notes: |
             Create concise release notes in `markdown` format for this pull request,
