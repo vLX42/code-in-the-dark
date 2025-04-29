@@ -92,8 +92,8 @@ jobs:
             ### CSS
             - Styles must be mobile-first: mobile is the default, larger screens are overrides.
             - Follow established team naming and structure conventions.
-            - Use hex colors or theme colors from ${theme.colors}.
-            - Use `rem` units instead of `px`. For spacing, use ${theme.spacing} (e.g., xs, s, m, l).
+            - Use hex colors or theme colors from {theme.colors}.
+            - Use `rem` units instead of `px`. For spacing, use {theme.spacing} (e.g., xs, s, m, l).
             - Avoid absolute positioning if relative layout works.
             - Do not use `!important`.
             - No hardcoded color or spacing values — retrieve them from the theme.
