@@ -22,7 +22,7 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - uses: vLX42/ai-pr-reviewer@v6.0
+      - uses: vLX42/ai-pr-reviewer@v6.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
@@ -55,17 +55,24 @@ jobs:
                 - Commentary on newer APIs or methods — trust the user's use of modern code.
                 - Unnecessary nitpicking — focus on real risks, bad practices, or major improvement opportunities.
 
-                If your review identifies significant issues requiring changes, **insert the following tag at the top**:
+                To mark your review as a formal **change request** (i.e., using GitHub’s `REQUEST_CHANGES` type), your response must follow a clear and structured format. This means:
+
+                - The reply should be **concise, actionable, and directly related to the code**.
+                - The language should make it clear that the issue **must be resolved before approval**.
+                - Avoid vague suggestions — state exactly **what needs to be changed and why**.
+
+                To activate this mode in the GitHub Action, **insert the following tag at the very top of your response**:
+
                 ```
                 <!-- This is a CHANGE-REQUEST by OSS CodeSailor -->
                 ```
 
+                > ⚠️ Only use this tag if your reply meets the quality and format needed for a valid `CHANGE_REQUEST`. Weak or general feedback may be posted as a regular comment instead.
+
                 ## Specific Areas to Review
 
                 ### General
-                - PBI must be linked in the PR.
                 - PR title must follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
-                - Code must fully implement the PBI without regressions.
                 - Code must stay simple and understandable; complexity must be justified.
                 - Follow existing patterns, technologies, and team conventions.
                 - Enforce DRY (Don't Repeat Yourself) everywhere — no duplicated logic.
