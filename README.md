@@ -1,3 +1,21 @@
+## 🎯 Want to run a Code in the Dark event without the hassle? Try Blind Code
+
+The original [Code in the Dark](http://codeinthedark.com) concept — created at Tictail and later adopted by Shopify — was a fun idea: contestants race to recreate a website design using only HTML/CSS, with no preview allowed. The audience votes on the winner. Great concept, but the original tooling was a DIY affair: static editor bundles distributed on USB sticks, no server, no scoreboard, no real-time anything. Shopify hasn't actively used or maintained the project in years, leaving organizers to figure it out themselves.
+
+**[Blind Code](https://www.blind-code.work/)** is a fully hosted, modern take on the same concept — batteries included:
+
+- 🔐 **GitHub login** — no more passing around USB sticks or trust-based handles
+- 🎮 **Create & manage games from a UI** — upload reference images, set color palettes, add asset URLs
+- 🏟️ **Real-time lobby** — players join with a short code, see who's in the room
+- ⏱️ **Progress snapshots every 15 seconds** — watch each player's journey after the round
+- 🗳️ **Kahoot-style voting & winner reveal** — audience votes, winner announced live
+- ☁️ **Zero infrastructure** — powered by [Convex](https://convex.dev), deploy to Vercel in minutes
+
+🔗 **Play now:** https://www.blind-code.work/
+📦 **Source:** https://github.com/vLX42/blind-code-convex
+
+---
+
 ## Code in the Dark - React/Next.js rewrite
 
 This is a rewrite of the Coffescript version, its coded in React/Next.js I have also added a real-time score page and the ability to save the final result. There is also a time laps function where you can see the progress and changes made every 15 second. 
