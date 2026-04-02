@@ -1,3 +1,20 @@
+## 🚀 Check Out the New Version: Blind Code
+
+> **Looking for a more feature-rich, serverless version?** Check out **[Blind Code](https://www.blind-code.work/)** — a modern reimagining of Code in the Dark built with Convex, GitHub Auth, and Kahoot-style voting!
+>
+> 🔗 **Live site:** https://www.blind-code.work/
+> 📦 **Source code:** https://github.com/vLX42/blind-code-convex
+>
+> ### Why upgrade?
+> - ✅ **No database to manage** — powered by [Convex](https://convex.dev) (free tier available)
+> - ✅ **GitHub Authentication** — secure login, no more honor-system handles
+> - ✅ **Easy game creation** — upload reference images, add color palettes & assets from the UI
+> - ✅ **Real-time lobby** — players join via a short code
+> - ✅ **Kahoot-style voting & winner reveal** — judge submissions with style
+> - ✅ **Deploy to Vercel in minutes** — no Postgres setup required
+
+---
+
 ## Code in the Dark - React/Next.js rewrite
 
 This is a rewrite of the Coffescript version, its coded in React/Next.js I have also added a real-time score page and the ability to save the final result. There is also a time laps function where you can see the progress and changes made every 15 second. 
