@@ -16,33 +16,35 @@ export default function PageComponent(
   const router = useRouter();
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [timeLeft, setTimeLeft] = useState(
-    (entry as Entry & { timelaps: Timelap[] })?.timelaps.length
+    (entry as Entry & { timelaps: Timelap[] })?.timelaps.length + 1
   );
 
   useEffect(() => {
-    // exit early when we reach 0
-    if (!timeLeft) return;
+    if (timeLeft < 0) return;
 
-    // save intervalId to clear the interval when the
-    // component re-renders
     const intervalId = setInterval(() => {
       const doc = iframeRef?.current?.contentDocument;
       doc?.open();
-      doc?.write(
-        injectCode +
-          (timeLeft == 1
-            ? entry?.html
-            : (entry as Entry & { timelaps: Timelap[] })?.timelaps[timeLeft]
-                ?.html) || ""
-      );
+
+      if (timeLeft === 1) {
+        doc?.write(injectCode + (entry?.html || ""));
+      } else if (timeLeft > 1) {
+        doc?.write(
+          injectCode +
+            (entry as Entry & { timelaps: Timelap[] })?.timelaps[timeLeft - 2]
+              ?.html || ""
+        );
+      } else {
+        setTimeLeft(
+          (entry as Entry & { timelaps: Timelap[] })?.timelaps.length + 1
+        );
+      }
+
       doc?.close();
       setTimeLeft(timeLeft - 1);
     }, 100);
 
-    // clear interval on re-render to avoid memory leaks
     return () => clearInterval(intervalId);
-    // add timeLeft as a dependency to re-rerun the effect
-    // when we update it
   }, [timeLeft]);
 
   return (
@@ -65,8 +67,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
     include: {
       timelaps: {
         orderBy: { id: "desc" },
-        select: { id: true , html: true},
-
+        select: { id: true, html: true },
       },
     },
   });
